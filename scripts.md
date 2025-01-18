@@ -124,12 +124,12 @@ def load(id):
 
 **当您输入某个指令时，请思考一下这条命令是如何对底层的图数据结构进行操作的。**
 
-# Git 的命令行接口
+## Git 的命令行接口
 
-为了避免重复信息，我们将不会详细解释以下命令行。强烈推荐您阅读 [Pro Git 中文版](https://git-scm.com/book/zh/v2) 或可以观看本讲座的视频来学习。
+我不会详细解释以下命令行。强烈推荐阅读 [Pro Git 中文版](https://git-scm.com/book/zh/v2) 。
 
 
-## 基础
+### 基础
 
 The `git init` command initializes a new Git repository, with repository
 metadata being stored in the `.git` directory:
@@ -295,9 +295,7 @@ index 94bab17..f0013b2 100644
 - `git diff <revision> <filename>`: 显示某个文件两个版本之间的差异
 - `git checkout <revision>`: 更新 HEAD 和目前的分支
 
-## 分支和合并
-
-{% comment %}
+### 分支和合并
 
 Branching allows you to "fork" version history. It can be helpful for working
 on independent features or bug fixes in parallel. The `git branch` command can
@@ -308,8 +306,6 @@ Merging is the opposite of branching: it allows you to combine forked version
 histories, e.g. merging a feature branch back into master. The `git merge`
 command is used for merging.
 
-{% endcomment %}
-
 - `git branch`: 显示分支
 - `git branch <name>`: 创建分支
 - `git checkout -b <name>`: 创建分支并切换到该分支
@@ -318,7 +314,7 @@ command is used for merging.
 - `git mergetool`: 使用工具来处理合并冲突
 - `git rebase`: 将一系列补丁变基（rebase）为新的基线
 
-## 远端操作
+### 远端操作
 
 - `git remote`: 列出远端
 - `git remote add <name> <url>`: 添加一个远端
@@ -328,14 +324,14 @@ command is used for merging.
 - `git pull`: 相当于 `git fetch; git merge`
 - `git clone`: 从远端下载仓库
 
-## 撤销
+### 撤销
 
 - `git commit --amend`: 编辑提交的内容或信息
 - `git reset HEAD <file>`: 恢复暂存的文件
 - `git checkout -- <file>`: 丢弃修改
 - `git restore`: git2.32 版本后取代 git reset 进行许多撤销操作
 
-# Git 高级操作
+### Git 高级操作
 
 - `git config`: Git 是一个 [高度可定制的](https://git-scm.com/docs/git-config) 工具
 - `git clone --depth=1`: 浅克隆（shallow clone），不包括完整的版本历史信息
@@ -345,27 +341,3 @@ command is used for merging.
 - `git stash`: 暂时移除工作目录下的修改内容
 - `git bisect`: 通过二分查找搜索历史记录
 - `.gitignore`: [指定](https://git-scm.com/docs/gitignore) 故意不追踪的文件
-
-# 资源
-
-- [Pro Git](https://git-scm.com/book/en/v2) ，**强烈推荐**！学习前五章的内容可以教会您流畅使用 Git 的绝大多数技巧，因为您已经理解了 Git 的数据模型。后面的章节提供了很多有趣的高级主题。（[Pro Git 中文版](https://git-scm.com/book/zh/v2)）；
-- [Oh Shit, Git!?!](https://ohshitgit.com/) ，简短的介绍了如何从 Git 错误中恢复；
-- [Git for Computer Scientists](https://eagain.net/articles/git-for-computer-scientists/) ，简短的介绍了 Git 的数据模型，与本文相比包含较少量的伪代码以及大量的精美图片；
-- [Git from the Bottom Up](https://jwiegley.github.io/git-from-the-bottom-up/) 详细的介绍了 Git 的实现细节，而不仅仅局限于数据模型。好奇的同学可以看看；
-- [How to explain git in simple words](https://smusamashah.github.io/blog/2017/10/14/explain-git-in-simple-words)；
-- [Learn Git Branching](https://learngitbranching.js.org/) 通过基于浏览器的游戏来学习 Git ；
-
-
-# 课后练习
-
-[习题解答]({{site.url}}/{{site.solution_url}}/{{page.solution.url}})
-1. 如果您之前从来没有用过 Git，推荐您阅读 [Pro Git](https://git-scm.com/book/en/v2) 的前几章，或者完成像 [Learn Git Branching](https://learngitbranching.js.org/) 这样的教程。重点关注 Git 命令和数据模型相关内容；
-2. 克隆 [本课程网站的仓库](https://github.com/missing-semester-cn/missing-semester-cn.github.io.git)
-    1. 将版本历史可视化并进行探索
-    2. 是谁最后修改了 `README.md` 文件？（提示：使用 `git log` 命令并添加合适的参数）
-    3. 最后一次修改 `_config.yml` 文件中 `collections:` 行时的提交信息是什么？（提示：使用 `git blame` 和 `git show`）
-3. 使用 Git 时的一个常见错误是提交本不应该由 Git 管理的大文件，或是将含有敏感信息的文件提交给 Git 。尝试向仓库中添加一个文件并添加提交信息，然后将其从历史中删除 ( [这篇文章也许会有帮助](https://help.github.com/articles/removing-sensitive-data-from-a-repository/))；
-4. 从 GitHub 上克隆某个仓库，修改一些文件。当您使用 `git stash` 会发生什么？当您执行 `git log --all --oneline` 时会显示什么？通过 `git stash pop` 命令来撤销 `git stash` 操作，什么时候会用到这一技巧？
-5. 与其他的命令行工具一样，Git 也提供了一个名为 `~/.gitconfig` 配置文件 (或 dotfile)。请在 `~/.gitconfig` 中创建一个别名，使您在运行 `git graph` 时，您可以得到 `git log --all --graph --decorate --oneline` 的输出结果；
-6. 您可以通过执行 `git config --global core.excludesfile ~/.gitignore_global` 在 `~/.gitignore_global` 中创建全局忽略规则。配置您的全局 gitignore 文件来自动忽略系统或编辑器的临时文件，例如 `.DS_Store`；
-7. Fork [本课程网站的仓库](https://github.com/missing-semester-cn/missing-semester-cn.github.io.git)，找找有没有错别字或其他可以改进的地方，在 GitHub 上发起拉取请求（Pull Request）；
